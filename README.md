@@ -261,13 +261,13 @@ Where:
 
 ## Features
 
-- ✅ Multi-sensor BLE connectivity
-- ✅ Automatic device discovery and connection
-- ✅ Real-time parking status monitoring
-- ✅ MQTT cloud integration
-- ✅ Robust error handling and reconnection
-- ✅ Async BLE operations for efficient resource usage
-- ✅ Thread-safe status queue for MQTT publishing
+- Multi-sensor BLE connectivity
+- Automatic device discovery and connection
+- Real-time parking status monitoring
+- MQTT cloud integration
+- Robust error handling and reconnection
+- Async BLE operations for efficient resource usage
+- Thread-safe status queue for MQTT publishing
 
 ## Troubleshooting
 
@@ -290,20 +290,13 @@ Where:
 
 ## Future Enhancements
 
-- [ ] Add OLED display support for local status display
-- [ ] Implement BLE security/pairing
-- [ ] Add battery level monitoring for sensors
-- [ ] Implement sensor calibration features
-- [ ] Add web dashboard for parking monitoring
-- [ ] Support for more parking spots
+- Add OLED display support for local status display
+- Implement BLE security/pairing
+- Add battery level monitoring for sensors
+- Implement sensor calibration features
+- Add web dashboard for parking monitoring
+- Support for more parking spots
 
-## License
-
-This project is part of an academic/research project. Please refer to your institution's guidelines for usage and distribution.
-
-## Author
-
-University of Jordan - Masters in Embedded Programming
 
 ## References
 
