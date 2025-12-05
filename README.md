@@ -6,22 +6,7 @@ This project implements a Smart Parking System that monitors parking spot occupa
 
 ## System Architecture
 
-```
-┌─────────────────────┐
-│  nRF52840 Sensor 1  │──┐
-│  (Parking Spot 1)   │  │
-└─────────────────────┘  │
-                         │ BLE
-┌─────────────────────┐  │
-│  nRF52840 Sensor 2  │──┼──► ESP32 Huzzah ──► Wi-Fi ──► MQTT Broker
-│  (Parking Spot 2)   │  │     Fruitboard      (HiveMQ Cloud)
-└─────────────────────┘  │
-                         │
-┌─────────────────────┐  │
-│  nRF52840 Sensor N  │──┘
-│  (Parking Spot N)   │
-└─────────────────────┘
-```
+![FLow Diagram](figures/hardware-flow-diagram.png)
 
 ## Hardware Requirements
 
@@ -296,7 +281,6 @@ Where:
 - Implement sensor calibration features
 - Add web dashboard for parking monitoring
 - Support for more parking spots
-
 
 ## References
 
