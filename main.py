@@ -12,17 +12,17 @@ from umqtt.robust import MQTTClient
 # -----------------------------
 # Wi-Fi credentials
 # -----------------------------
-WIFI_SSID = "Redmi Note 10"
-WIFI_PASSWORD = "01130113"
+WIFI_SSID = "xxxx"
+WIFI_PASSWORD = "xxxx"
 
 # -----------------------------
 # HiveMQ Cloud credentials
 # -----------------------------
-MQTT_BROKER = "bf05acb5ee194085a7731e5ca603fe6c.s1.eu.hivemq.cloud"
+MQTT_BROKER = "xxxx.hivemq.cloud"
 MQTT_PORT = 8883
 MQTT_CLIENT_ID = "esp32_parking"
-MQTT_USER = "aawaiss011"
-MQTT_PASSWORD = "Awais0113"
+MQTT_USER = "xxxx"
+MQTT_PASSWORD = "xxxx"
 TOPIC_PREFIX = "parking/"
 
 # France timezone (UTC+1 winter, UTC+2 summer)
