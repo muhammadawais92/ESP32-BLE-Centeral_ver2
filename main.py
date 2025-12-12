@@ -1,5 +1,7 @@
 import network
 import time
+import ntptime
+import json
 import uasyncio as asyncio
 import aioble
 import bluetooth
@@ -10,26 +12,28 @@ from umqtt.robust import MQTTClient
 # -----------------------------
 # Wi-Fi credentials
 # -----------------------------
-WIFI_SSID = "xxxx"
-WIFI_PASSWORD = "xxx"
+WIFI_SSID = "Redmi Note 10"
+WIFI_PASSWORD = "01130113"
 
 # -----------------------------
 # HiveMQ Cloud credentials
 # -----------------------------
-MQTT_BROKER = "xxxxxx.hivemq.cloud"
+MQTT_BROKER = "bf05acb5ee194085a7731e5ca603fe6c.s1.eu.hivemq.cloud"
 MQTT_PORT = 8883
 MQTT_CLIENT_ID = "esp32_parking"
-MQTT_USER = "xxxx"
-MQTT_PASSWORD = "xxxx"
+MQTT_USER = "aawaiss011"
+MQTT_PASSWORD = "Awais0113"
 TOPIC_PREFIX = "parking/"
 
+# France timezone (UTC+1 winter, UTC+2 summer)
+TIMEZONE_OFFSET = 1  # adjust to 2 for DST
 
 # -----------------------------
 # BLE Setup
 # -----------------------------
 DEVICE_SERVICES = {
     bluetooth.UUID("12345678-1234-5678-1234-56789abcdef0"): "spot1",
-    bluetooth.UUID("87654321-4321-5678-4321-0fedcba98765"): "spot2"
+    #bluetooth.UUID("87654321-4321-5678-4321-0fedcba98765"): "spot2"
 }
 CHAR_UUID = bluetooth.UUID("12345678-1234-5678-1234-56789abcdef1")
 connected_devices = {}
@@ -67,6 +71,16 @@ def connect_wifi():
         print()
     if wlan.isconnected():
         print("Wi-Fi connected:", wlan.ifconfig())
+        
+# -----------------------------
+# Sync time via NTP
+# -----------------------------
+        try:
+            ntptime.settime()  # sets ESP32 RTC to UTC
+            print("Time synchronized via NTP")
+        except Exception as e:
+            print("NTP sync failed:", e)
+            
         return True
     else:
         print("Wi-Fi connection failed")
@@ -98,8 +112,23 @@ def mqtt_worker():
 
     while True:
         spot, status = queue_get()
+        
+        # Get current time
+        t = time.localtime(time.time() + TIMEZONE_OFFSET * 3600)
+        timestamp = "{:04d}-{:02d}-{:02d} {:02d}:{:02d}:{:02d}".format(
+            t[0], t[1], t[2], t[3], t[4], t[5]
+        )
+        
+        
+        # Create MQTT topic
         topic = f"{TOPIC_PREFIX}{spot}/status"
-        payload = '{"spot":"%s","status":%d}' % (spot, status)
+
+        # JSON payload with timestamp
+        payload = json.dumps({
+            "spot": spot,
+            "status": status,
+            "timestamp": timestamp
+        })
         try:
             client.publish(topic, payload)
             print(f"Published: {payload} to {topic}")
