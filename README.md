@@ -8,6 +8,23 @@ This project implements a Smart Parking System that monitors parking spot occupa
 
 ![FLow Diagram](figures/hardware-flow-diagram.png)
 
+## Hardware Connections
+
+![FLow Diagram](figures/ports-connections.jpg)
+
+Follow these steps to connect the nodes to your machine for power and programming:
+
+1. **Prepare the Boards:** Place the **ESP-32 (Central)** and the two **nRF52840 (Spots)** onto the breadboard. 
+   * *Note: The breadboard is used only as a physical holder; no manual wiring between boards is required.*
+
+2. **Connect USB Cables:** Plug a Micro-USB cable into the port of each individual board.
+
+3. **Plug into Machine:** Connect the other end of the three USB cables into your computer or a powered USB hub.
+
+4. **Verify Power:** Ensure the boards are powered up (small yellow/orange led is blinking).
+
+5. **Check Port Recognition:** Open your **Device Manager** (Windows) or **System Information** (Mac) to verify that three new Serial/COM ports have appeared.
+
 ## Hardware Requirements
 
 ### Central Device
@@ -59,9 +76,6 @@ This project implements a Smart Parking System that monitors parking spot occupa
    - Handles MQTT connections with automatic reconnection
    - Located in `lib/umqtt/robust.py`
 
-3. **ssd1306** (v0.1.0) - Optional
-   - OLED display driver library
-   - Located in `lib/ssd1306.py`
 
 ### CircuitPython Libraries (for nRF52840 Sensors)
 
@@ -90,8 +104,7 @@ The required libraries are already included in the `lib/` directory. If you need
 ## Configuration
 
 ### Wi-Fi Configuration
-
-Edit `main.py` and update the following variables:
+In the ESP32 code base edit `main.py` and update the following variables:
 
 ```python
 WIFI_SSID = "your_wifi_ssid"
@@ -100,7 +113,7 @@ WIFI_PASSWORD = "your_wifi_password"
 
 ### MQTT Configuration
 
-Edit `main.py` and update the following variables:
+In the ESP32 code base edit `main.py` and update the following variables:
 
 ```python
 MQTT_BROKER = "your_broker.hivemq.cloud"
